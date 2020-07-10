@@ -1,6 +1,6 @@
 # RTE2016
 
-This repository contains code to accompany the manuscript "_______"
+This repository contains the data and code to accompany the manuscript: "_______"
 
 Repository contents:
 
