@@ -5,7 +5,12 @@ This repository contains the data and code to accompany the manuscript: "_______
 Repository contents:
 
 Data/:
+Coco.csv
 
-RTE_Frag_Master_Long.csv
+Monty.csv
 
-RTE_Parents_Master_Long.csv
+seaphox_final.csv
+
+RTE_Frags.csv
+
+RTE_Genotypes.csv
