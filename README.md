@@ -6,6 +6,6 @@ Repository contents:
 
 Data/:
 
-RTE_Frag_Master_Long.csv
+RTE_Frags.csv
 
-RTE_Parents_Master_Long.csv
+RTE_Genotypes.csv
