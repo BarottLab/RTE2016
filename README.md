@@ -10,31 +10,31 @@ Katie L. Barott, Ariana S. Huffmyer, Jennifer M. Davidson, Elizabeth A. Lenz, Sh
 
 **Data/:**
 
-Coco.csv: CTD environmental data for inner lagoon reef (PR4)
+Coco.csv: CTD environmental data for inner lagoon (PR4)
 
-Monty.csv: CTD environmental data for outer lagoon reef (PR13)
+Monty.csv: CTD environmental data for outer lagoon (PR13)
 
-PAR.csv
+PAR.csv: Summary Odyssey light logger data for both inner lagoon and outer lagoon
 
 RTE_Frags.csv
 
 RTE_Genotypes.csv
 
-seaphox_final.csv: SeapHOx environmental data for inner lagoon and outer lagoon reefs (PR4, PR13)
+seaphox_final.csv: SeapHOx environmental data for inner lagoon and outer lagoon (PR4, PR13)
 
 SpawnDynamic.csv
 
 Stress_Master.csv
 
-Analysis/:
+**Analysis/:**
 
 MixedModelAnalysis.R
 
-Odyssey.R
+Odyssey.R: Analysis of PAR at each lagoon site
 
 ResponseSummaries.R
 
-SeapHOxAnalysis.R
+SeapHOxAnalysis.R: Analysis of environmental regimes at each lagoon site
 
 StressModelAnalysis.R
 
