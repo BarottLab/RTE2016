@@ -1,0 +1,40 @@
+Column Label,Data
+FragID,Fragment ID #
+Parent,Genotype ID #
+Origin,"Origin reef (Inner Lagoon = 4, Outer Lagoon = 13)"
+Transplant,"Transplant reef (Inner Lagoon = 4, Outer Lagoon = 13) "
+Species,"Species (Montipora capitata, Porites compressa)"
+Rack,Rack# fragment was on
+Timepoint,Months post-transplant
+AFDW,Ash-free dry weight (mg)
+SA,Surface area (cm^2)
+BM,Biomass (mg/cm^2)
+BWg.d,Buoyant weight (g/day)
+BWx,Buoyant weight (%)
+BWx.d,Buoyant weight (%/day)
+BWg.dSA,Buoyant weight (g/day/cm^2)
+BWg.dAFDW,Buoyant weight (g/day/mg)
+BWx.dSA,Buoyant weight (%/day/cm^2)
+BWx.dAFDW,Buoyant weight (%/day/mg)
+LE,Linear extension (cm/day)
+NP,Net photosynthesis (µmol/min)
+R,Respiration (µmol/min)
+GP,Gross photosynthesis (µmol/min)
+GPSA,Gross photosynthesis (µmol/cm^2/min)
+GPAFDW,Gross photosynthesis (µmol/mg/min)
+NPSA,Net photosynthesis (µmol/cm2/min)
+NPAFDW,Net photosynthesis (µmol/mg/min)
+RSA,Respiration (µmol/cm^2/min)
+RAFDW,Respiration (µmol/mg/min)
+P_RSA,P:R 
+P_RAFDW,P:R 
+F0,Minimum fluorescence
+FM,Maximum fluorescence 
+Yield,Maximum fluorescence yield 
+PercentLipids,Lipids (%)
+TotalLipids,Total lipds
+PropLipids,Proportion lipids
+Final.prey.SA,Total predation (prey/cm2/h)
+PropSpawn,Proportion spawned
+FitScore,Fitness score 
+Survival,Survival (%)
