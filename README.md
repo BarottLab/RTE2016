@@ -10,9 +10,9 @@ Katie L. Barott, Ariana S. Huffmyer, Jennifer M. Davidson, Elizabeth A. Lenz, Sh
 
 **Data/:**
 
-Coco.csv
+Coco.csv: CTD environmental data for inner lagoon reef (PR4)
 
-Monty.csv
+Monty.csv: CTD environmental data for outer lagoon reef (PR13)
 
 PAR.csv
 
@@ -20,7 +20,7 @@ RTE_Frags.csv
 
 RTE_Genotypes.csv
 
-seaphox_final.csv
+seaphox_final.csv: SeapHOx environmental data for inner lagoon and outer lagoon reefs (PR4, PR13)
 
 SpawnDynamic.csv
 
