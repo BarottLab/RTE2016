@@ -20,6 +20,8 @@ RTE_Frags.csv
 
 RTE_Genotypes.csv
 
+RTE Metadata.csv
+
 seaphox_final.csv: SeapHOx environmental data for inner lagoon and outer lagoon (PR4, PR13)
 
 SpawnDynamic.csv
