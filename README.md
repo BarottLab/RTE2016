@@ -16,9 +16,9 @@ Monty.csv: CTD environmental data for outer lagoon (PR13)
 
 PAR.csv: Summary Odyssey light logger data for both inner lagoon and outer lagoon
 
-RTE_Frags.csv
+RTE_Frags.csv: Response variables for each fragment involved in the reciprocal transplant
 
-RTE_Genotypes.csv
+RTE_Genotypes.csv: Response variables for each genotype involved in the reciprocal transplant
 
 RTE Metadata.csv
 
