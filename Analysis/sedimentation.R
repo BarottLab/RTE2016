@@ -26,7 +26,7 @@ setwd("~/Google Drive/Coral AE Project/Field/FieldPhysicalData/")
 
 #####Sedimentation Rate#####
 ####Load Dataset####
-seds<-read.csv("~/Desktop/RTE - PNAS/sedimentation.csv", header=TRUE, sep=",", na.strings="NA")
+seds<-read.csv("sedimentation.csv", header=TRUE, sep=",", na.strings="NA")
 seds$Trap.ID<-as.factor(seds$Trap.ID)
 seds$Site.ID<-as.factor(seds$Site.ID)
 seds$Rack.ID<-as.factor(seds$Rack.ID)
@@ -35,14 +35,13 @@ seds$Date<-as.factor(seds$Date)
 seds$Week<-as.factor(seds$Week)
 
 
-####Sedimentation by Site.ID####
+####Sedimentation by Site####
 Seds.Summarize.Site <- ddply(seds, c("Site.ID"), summarise,
-                             N    = length(Sediment.Day),
+                             N    = length(Sediment.Day[!is.na(Sediment.Day)]),
                              mean = mean(Sediment.Day, na.rm=TRUE),
                              sd   = sd(Sediment.Day, na.rm=TRUE),
                              se   = sd / sqrt(N)
-)
-Seds.Summarize.Site
+);Seds.Summarize.Site
 
 meansite=c(Seds.Summarize.Site$mean)
 semsite=c(Seds.Summarize.Site$se)
@@ -51,50 +50,20 @@ plotCI(barplot(height=meansite, margin(t=1, r=1, b=1, l=1, unit="pt"), mgp=c(1.7
 
 hist(seds$Sediment.Day)
 shapiro.test(seds$Sediment.Day)
-#non-normal, use non-parametric?
 
-wilcox.test(Sediment.Day~Site.ID, alternative=c("greater"), data=seds)
+#non-normal, use non-parametric Wilcoxon Rank Sum Test (by site)
 
-Seds.Site.lm <- lm(Sediment.Day ~ Site.ID, data=seds)
-anova(Seds.Site.lm)
-
-Seds.Site.posthoc <- lsmeans(Seds.Site.lm, specs=c("Site.ID"), na.rm=TRUE) #calculate MS means
-Seds.Site.posthoc #view results
-Seds.Site.posthoc.lett <- cld(Seds.Site.posthoc , alpha=.05, Letters=letters) #identify posthoc letter differences
-Seds.Site.posthoc.lett
-
-####Sedimentation by Trap.ID####
-Seds.Summarize <- ddply(seds, c("Rack.ID"), summarise,
-                        N    = length(Sediment.Day),
-                        mean = mean(Sediment.Day, na.rm=TRUE),
-                        sd   = sd(Sediment.Day, na.rm=TRUE),
-                        se   = sd / sqrt(N)
-)
-Seds.Summarize
-
-meanstrap=c(Seds.Summarize$mean)
-semtrap=c(Seds.Summarize$se)
-
-plotCI(barplot(height=meanstrap, names.arg=Seds.Summarize$Rack.ID, ylim=c(0,1), beside = TRUE, main = "Sedimentation per day by frame", xlab="Frame ID", ylab="Sedimentation (g) per day", xpd = FALSE, axes = TRUE), y=meanstrap, uiw=semtrap, liw = semtrap, ui=NULL, li=NULL, err="y", add=TRUE, pch=NA, gap=0)
-
-Seds.lm <- lm(Sediment.Day ~ Trap.ID, data=seds)
-anova(Seds.lm)
-
-Seds.posthoc <- lsmeans(Seds.lm, specs=c("Trap.ID"), na.rm=TRUE) #calculate MS means
-Seds.posthoc #view results
-Seds.posthoc.lett <- cld(Seds.posthoc , alpha=.05, Letters=letters) #identify posthoc letter differences
-Seds.posthoc.lett
-
+wilcox.test(Sediment.Day~Site.ID, data=seds)
+#p<0.001
 
 ####Sedimentation over Time####
 
 Seds.Time<- ddply(seds, c("Week", "Site.ID"), summarise,
-                          N    = length(Sediment.Day),
+                          N    = length(Sediment.Day[!is.na(Sediment.Day)]),
                           mean = mean(Sediment.Day, na.rm=TRUE),
                           sd   = sd(Sediment.Day, na.rm=TRUE),
                           se   = sd / sqrt(N)
-)
-Seds.Time
+);Seds.Time
 
 Fig1<-ggplot(data=Seds.Time, aes(x=Week, y=mean, group=Site.ID, shape=Site.ID, color=Site.ID))+
   geom_errorbar(aes(ymin=mean-se, ymax=mean+se),
@@ -117,9 +86,11 @@ Fig1<-ggplot(data=Seds.Time, aes(x=Week, y=mean, group=Site.ID, shape=Site.ID, c
         plot.title=element_text(), #Justify the title to the top left
         legend.text = element_text(size = 20),
         axis.title.y=element_text(),
-        text=element_text(size=20))
-Fig1
+        text=element_text(size=20));Fig1
 
+#conduct non parametric kruskal wallis test (by week and site)
+seds$group<-paste(seds$Week, seds$Site.ID)
+kruskal.test(Sediment.Day~group, data=seds) #significant difference by group (week*timepoint)
 
 #####Sediment Grain Size#####
 ####Load Dataset####
