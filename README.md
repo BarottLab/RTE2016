@@ -10,10 +10,6 @@ Katie L. Barott, Ariana S. Huffmyer, Jennifer M. Davidson, Elizabeth A. Lenz, Sh
 
 **Data/:**
 
-Coco.csv: CTD environmental data for inner lagoon (PR4)
-
-Monty.csv: CTD environmental data for outer lagoon (PR13)
-
 PAR.csv: Summary Odyssey light logger data for both inner lagoon and outer lagoon
 
 RTE_Frags.csv: Response variables for each fragment involved in the reciprocal transplant
@@ -22,11 +18,13 @@ RTE_Genotypes.csv: Averaged response variables for all fragments per genotype in
 
 RTE Metadata.csv: Column descriptions for "RTE_Frags.csv" and "RTE_Genotypes.csv"
 
-seaphox_final.csv: SeapHOx environmental data for inner lagoon and outer lagoon (PR4, PR13)
+EnvData.csv: SeapHOx environmental data for inner lagoon and outer lagoon (PR4, PR13)
 
 SpawnDynamic.csv: Data for MCAP spawning activity
 
 Stress_Master.csv: Response variables for each fragment involved in the thermal challenge
+
+flow.csv: 
 
 **Analysis/:**
 
@@ -36,8 +34,12 @@ Odyssey.R: Analysis of PAR at each lagoon site
 
 ResponseSummaries.R: Code to generate summary figures
 
-SeapHOxAnalysis.R: Analysis of environmental regimes at each lagoon site
+EnvSummary.R: Analysis of environmental regimes at each lagoon site
 
 StressModelAnalysis.R: Linear mixed effect models for thermal challenge
 
 StressTest.R: Code to generate thermal challenge figures
+
+flow.R: Code to analyze flow dynamics at each lagoon site
+
+sedimentation.R: Code to analyze sedimentation rates at each lagoon site
