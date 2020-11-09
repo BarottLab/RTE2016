@@ -24,7 +24,9 @@ SpawnDynamic.csv: Data for MCAP spawning activity
 
 Stress_Master.csv: Response variables for each fragment involved in the thermal challenge
 
-flow.csv: 
+flow.csv: Flow regime data for inner lagoon and outer lagoon (PR4, PR13)
+
+sedimentation.csv: Sedimentation rate data for inner lagoon and outer lagoon (PR4, PR13)
 
 **Analysis/:**
 
