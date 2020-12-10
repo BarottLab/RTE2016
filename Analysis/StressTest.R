@@ -19,7 +19,6 @@ tf <- subset(master, Timepoint == "f")
 tfam <- subset(tf, Treatment == "Ambient")
 tfh <- subset(tf, Treatment == "High")
 
-png("T0GP.png", width = 150, height = 100, units = "mm", res = 500)
 GP0 = ggplot(t0am, aes(x = Transplant, y = GPSAhour, color = Origin)) + 
   stat_summary(aes(group = Origin, shape = Treatment), fun = mean, geom = "point", size = 2, position = position_dodge(width = 0.2)) +
   stat_summary(aes(group = Origin, linetype = Treatment), fun = mean, geom = "line", size = 0.8, position = position_dodge(width = 0.2)) + 
@@ -41,9 +40,7 @@ GP0 = ggplot(t0am, aes(x = Transplant, y = GPSAhour, color = Origin)) +
   theme(strip.text.y = element_blank()) +
   coord_cartesian(ylim = c(0, 4)) 
 GP0
-dev.off()
 
-png("TfGP.png", width = 150, height = 100, units = "mm", res = 500)
 GPf = ggplot(tfam, aes(x = Transplant, y = GPSAhour, color = Origin)) + 
   stat_summary(aes(group = Origin, shape = Treatment), fun = mean, geom = "point", size = 2, position = position_dodge(width = 0.2)) +
   stat_summary(aes(group = Origin, linetype = Treatment), fun = mean, geom = "line", size = 0.8, position = position_dodge(width = 0.2)) + 
@@ -65,9 +62,7 @@ GPf = ggplot(tfam, aes(x = Transplant, y = GPSAhour, color = Origin)) +
   theme(strip.text.y = element_blank()) +
   coord_cartesian(ylim = c(0, 4)) 
 GPf
-dev.off()
 
-png("T0R.png", width = 150, height = 100, units = "mm", res = 500)
 R0 = ggplot(t0am, aes(x = Transplant, y = RSAhour, color = Origin)) + 
   stat_summary(aes(group = Origin, shape = Treatment), fun = mean, geom = "point", size = 2, position = position_dodge(width = 0.2)) +
   stat_summary(aes(group = Origin, linetype = Treatment), fun = mean, geom = "line", size = 0.8, position = position_dodge(width = 0.2)) + 
@@ -89,9 +84,7 @@ R0 = ggplot(t0am, aes(x = Transplant, y = RSAhour, color = Origin)) +
   theme(strip.text.y = element_blank()) +
   coord_cartesian(ylim = c(0, 1.5)) 
 R0
-dev.off()
 
-png("TfR.png", width = 150, height = 100, units = "mm", res = 500)
 Rf = ggplot(tfam, aes(x = Transplant, y = RSAhour, color = Origin)) + 
   stat_summary(aes(group = Origin, shape = Treatment), fun = mean, geom = "point", size = 2, position = position_dodge(width = 0.2)) +
   stat_summary(aes(group = Origin, linetype = Treatment), fun = mean, geom = "line", size = 0.8, position = position_dodge(width = 0.2)) + 
@@ -113,9 +106,7 @@ Rf = ggplot(tfam, aes(x = Transplant, y = RSAhour, color = Origin)) +
   theme(strip.text.y = element_blank()) +
   coord_cartesian(ylim = c(0, 1.5)) 
 Rf
-dev.off()
 
-png("TfBWx.d.png", width = 150, height = 100, units = "mm", res = 500)
 BWf = ggplot(tfam, aes(x = Transplant, y = x.d, color = Origin)) + 
   stat_summary(aes(group = Origin, shape = Treatment), fun = mean, geom = "point", size = 2, position = position_dodge(width = 0.2)) +
   stat_summary(aes(group = Origin, linetype = Treatment), fun = mean, geom = "line", size = 0.8, position = position_dodge(width = 0.2)) + 
@@ -136,9 +127,7 @@ BWf = ggplot(tfam, aes(x = Transplant, y = x.d, color = Origin)) +
   theme(strip.text.x = element_blank(), strip.background = element_blank()) +
   theme(strip.text.y = element_blank())
 BWf
-dev.off()
 
-png("TfBW.mg.cm2.d.png", width = 150, height = 100, units = "mm", res = 500)
 BWtf = ggplot(tfam, aes(x = Transplant, y = mg.cm2.d, color = Origin)) + 
   stat_summary(aes(group = Origin, shape = Treatment), fun = mean, geom = "point", size = 2, position = position_dodge(width = 0.2)) +
   stat_summary(aes(group = Origin, linetype = Treatment), fun = mean, geom = "line", size = 0.8, position = position_dodge(width = 0.2)) + 
@@ -159,9 +148,7 @@ BWtf = ggplot(tfam, aes(x = Transplant, y = mg.cm2.d, color = Origin)) +
   theme(strip.text.x = element_blank(), strip.background = element_blank()) +
   theme(strip.text.y = element_blank())
 BWtf
-dev.off()
 
-png("T0PAM.png", width = 150, height = 100, units = "mm", res = 500)
 PAM0 = ggplot(t0am, aes(x = Transplant, y = Yield, color = Origin)) + 
   stat_summary(aes(group = Origin, shape = Treatment), fun = mean, geom = "point", size = 2, position = position_dodge(width = 0.2)) +
   stat_summary(aes(group = Origin, linetype = Treatment), fun = mean, geom = "line", size = 0.8, position = position_dodge(width = 0.2)) + 
@@ -182,9 +169,7 @@ PAM0 = ggplot(t0am, aes(x = Transplant, y = Yield, color = Origin)) +
   theme(strip.text.x = element_text(face = "italic", size = 10), strip.background = element_blank()) +
   theme(strip.text.y = element_blank())
 PAM0
-dev.off()
 
-png("TfPAM.png", width = 150, height = 100, units = "mm", res = 500)
 PAMf = ggplot(tfam, aes(x = Transplant, y = Yield, color = Origin)) + 
   stat_summary(aes(group = Origin, shape = Treatment), fun = mean, geom = "point", size = 2, position = position_dodge(width = 0.2)) +
   stat_summary(aes(group = Origin, linetype = Treatment), fun = mean, geom = "line", size = 0.8, position = position_dodge(width = 0.2)) + 
@@ -207,15 +192,6 @@ PAMf = ggplot(tfam, aes(x = Transplant, y = Yield, color = Origin)) +
   theme(strip.text.y = element_blank()) +
   guides(colour = guide_legend(override.aes = list(shape = NA))) 
 PAMf
-dev.off()
 
-# Arrange summary figures
-png("StressSummaryTf.png", width = 200, height = 200, units = "mm", res = 500)
-PAMf + GPf + Rf + BWtf + plot_layout(ncol = 1, nrow = 4, heights = 2)
-dev.off()
-
-png("StressSummaryT02.png", width = 200, height = 150, units = "mm", res = 500)
-PAM0 + GP0 + R0 + plot_layout(ncol = 1, nrow = 3, heights = 2)
-dev.off()
 
 

@@ -1,8 +1,3 @@
-#Sedimentation Analyses#
-#Last modified 15November2016 by Ariana Huffmyer#
-#RTE Field Physical Data Analysis#
-
-####Load workspace####
 rm(list=ls()) # removes all prior objects
 
 library("reshape") 
@@ -22,11 +17,9 @@ library("multcompView")
 library("coefplot")
 library("gridExtra")
 
-setwd("~/Google Drive/Coral AE Project/Field/FieldPhysicalData/")
-
 #####Sedimentation Rate#####
 ####Load Dataset####
-seds<-read.csv("sedimentation.csv", header=TRUE, sep=",", na.strings="NA")
+seds<-read.csv("Data/sedimentation.csv", header=TRUE, sep=",", na.strings="NA")
 seds$Trap.ID<-as.factor(seds$Trap.ID)
 seds$Site.ID<-as.factor(seds$Site.ID)
 seds$Rack.ID<-as.factor(seds$Rack.ID)
@@ -55,138 +48,3 @@ shapiro.test(seds$Sediment.Day)
 
 wilcox.test(Sediment.Day~Site.ID, data=seds)
 #p<0.001
-
-####Sedimentation over Time####
-
-Seds.Time<- ddply(seds, c("Week", "Site.ID"), summarise,
-                          N    = length(Sediment.Day[!is.na(Sediment.Day)]),
-                          mean = mean(Sediment.Day, na.rm=TRUE),
-                          sd   = sd(Sediment.Day, na.rm=TRUE),
-                          se   = sd / sqrt(N)
-);Seds.Time
-
-Fig1<-ggplot(data=Seds.Time, aes(x=Week, y=mean, group=Site.ID, shape=Site.ID, color=Site.ID))+
-  geom_errorbar(aes(ymin=mean-se, ymax=mean+se),
-                width=0, position=position_dodge()) +
-  geom_line() +
-  geom_point()+
-  xlab("Time (weeks)")+
-  ylab(expression(Sedimentation~(g~day^{-1})))+
-  ggtitle("")+
-  theme_bw()+
-  labs(color = "Reef Site", shape="Reef Site")+
-  scale_color_manual(values=c("gray", "black"))+
-  theme(axis.title.x=element_text(),
-        panel.border = element_blank(), 
-        panel.grid.major = element_blank(), 
-        panel.grid.minor = element_blank(), 
-        axis.line = element_line(colour = "black"),
-        legend.title=element_text(),
-        legend.position=("right"),
-        plot.title=element_text(), #Justify the title to the top left
-        legend.text = element_text(size = 20),
-        axis.title.y=element_text(),
-        text=element_text(size=20));Fig1
-
-#conduct non parametric kruskal wallis test (by week and site)
-seds$group<-paste(seds$Week, seds$Site.ID)
-kruskal.test(Sediment.Day~group, data=seds) #significant difference by group (week*timepoint)
-
-#####Sediment Grain Size#####
-####Load Dataset####
-size<-read.csv("./Sedimentation/SedimentAnalysis.csv", header=TRUE, sep=",", na.strings="NA")
-size$Date<-as.POSIXct(size$Date, format="%m/%d/%Y")
-
-#look at overal proportion of sediments in each size class at each site
-bins<-ddply(size, c("Site", "Bin"), summarise,
-                 N    = length(Proportion),
-                 mean = mean(Proportion, na.rm=TRUE),
-                 sd   = sd(Proportion, na.rm=TRUE),
-                 se   = sd / sqrt(N)
-)
-bins<-bins[-c(9,10,11,12,13,22,23,24,25,26), ]
-bins
-
-binsbar<-ggplot(data=bins, aes(x=Bin, y=mean, fill=Site)) +
-  geom_bar(stat="identity", position=position_dodge())+
-  geom_errorbar(aes(ymin=mean-se, ymax=mean+se),
-                width=0, position=position_dodge(0.9))+
-  theme_classic()+
-  theme(text = element_text(size = 14))+
-  theme(axis.text = element_text(size = 14))+
-  theme(axis.title = element_text(size = 14))+
-  ylab(expression(paste("Proportion of Grains in Size Bin"))) +
-  xlab("Size Bins (mm)")
-binsbar
-
-#look at mean sediment size at each site
-
-#subset data to pull out only mean values
-mean<-size[size$Bin == 'Mean',]
-mean
-
-hist(mean$Count)
-shapiro.test(mean$Count)
-#normally distributed
-
-means<-ddply(mean, c("Site"), summarise,
-            N    = length(Count),
-            mean = mean(Count, na.rm=TRUE),
-            sd   = sd(Count, na.rm=TRUE),
-            se   = sd / sqrt(N)
-)
-means
-
-meansbar<-ggplot(data=means, aes(x=Site, y=mean, fill=Site)) +
-  geom_bar(stat="identity", position=position_dodge())+
-  geom_errorbar(aes(ymin=mean-se, ymax=mean+se),
-                width=0, position=position_dodge(0.9))+
-  theme_classic()+
-  theme(text = element_text(size = 14))+
-  theme(axis.text = element_text(size = 14))+
-  theme(axis.title = element_text(size = 14))+
-  ylab(expression(paste("Mean Size (mm)"))) +
-  xlab("Site")
-meansbar
-
-summary(aov(mean$Count~mean$Site))
-#not significantly different by site
-
-summary(aov(mean$Count~mean$Site*mean$Date))
-#when you look at effects of site*date, there is a significant effect of site, date, and interaction of the two
-
-
-#look at size of mean sediment over time periods (x = date, color = site, line = mean)
-
-meantime<-ddply(mean, c("Date", "Site"), summarise,
-                N    = length(Count),
-                mean = mean(Count, na.rm=TRUE),
-                sd   = sd(Count, na.rm=TRUE),
-                se   = sd / sqrt(N)
-)
-meantime
-
-FigMeanTime<-ggplot(data=meantime, aes(x=Date, y=mean, group=Site, color=Site))+
-  geom_errorbar(aes(ymin=mean-se, ymax=mean+se),
-                width=0, position=position_dodge(0)) +
-  geom_line() +
-  geom_point()+
-  xlab("Date")+
-  ylab("Mean Size (mm)")+
-  theme_bw()+
-  theme(axis.title.x=element_text(),
-        panel.border = element_blank(), 
-        panel.grid.major = element_blank(), 
-        panel.grid.minor = element_blank(), 
-        axis.line = element_line(colour = "black"),
-        legend.title=element_text(),
-        legend.position=("right"),
-        plot.title=element_text(), #Justify the title to the top left
-        legend.text = element_text(size = 20),
-        axis.title.y=element_text(),
-        text=element_text(size=20))
-FigMeanTime
-
-
-
-
