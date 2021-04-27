@@ -2,7 +2,7 @@
 
 This repository contains the data and code to accompany the manuscript: 
 
-Katie L. Barott, Ariana S. Huffmyer, Jennifer M. Davidson, Elizabeth A. Lenz, Shayle B. Matsuda, Joshua R. Hancock, Teegan Innis, Crawford Drury, Hollie M. Putnam, Ruth D. Gates (2020). Coral bleaching response is unaltered following acclimatization to reefs with distinct environmental conditions 
+Katie L. Barott, Ariana S. Huffmyer, Jennifer M. Davidson, Elizabeth A. Lenz, Shayle B. Matsuda, Joshua R. Hancock, Teegan Innis, Crawford Drury, Hollie M. Putnam, Ruth D. Gates (2021). Coral bleaching response is unaltered following acclimatization to reefs with distinct environmental conditions 
 
 **Repository contents:**
 
